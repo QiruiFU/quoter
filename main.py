@@ -6,9 +6,22 @@ import requests
 attr_dict = dict([])
 plan_lines = []
 
-path = r'/opt/microsoft/msedge/microsoft-edge'
+
+set_up_file = open("set-up.txt", mode='r')
+set_up_info = set_up_file.read()
+info = set_up_info.split('\n')
+path = info[0]
+confirm_num = info[1]
+set_up_file.close()
+
 ChromiumOptions().set_browser_path(path).save()
 dp = ChromiumPage()
+
+if confirm_num == 0:
+    confirm = input("if you have set all websites, input \'finished\' here:\n")
+    if not confirm == "finished":
+        exit()
+
 key = '597313b6dd968254c3575f075ca7f72d'
 
 
